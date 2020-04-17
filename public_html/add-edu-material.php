@@ -19,7 +19,6 @@ include_once('includes/header.php');
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-
                     <form method="post">
                         <div class="form-group">
                             <label for="name">Название</label>
@@ -36,7 +35,7 @@ include_once('includes/header.php');
 
                         <div class="form-group">
                             <label for="content">Содержание приказа</label>
-                            <input type="text" class="form-control" id="content" placeholder="Содержание приказа"
+                            <input type="text" class="form-control" id="content"
                                    name="content">
                         </div>
 

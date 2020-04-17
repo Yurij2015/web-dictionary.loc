@@ -7,7 +7,7 @@
     <title>Кадровые приказы</title>
     <!-- Bootstrap -->
     <link href="../css/bootstrap-4.4.1.css" rel="stylesheet">
-    <script src="../libraries/tinymce/js/tinymce/tinymce.js" referrerpolicy="origin"></script>
+    <script src="../lib/tinymce/js/tinymce/tinymce.js" referrerpolicy="origin"></script>
 
     <script>
         tinymce.init({
@@ -35,6 +35,12 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../edu-material.php">Учебные материалы</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../edu-material.php">Категории</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../edu-material.php">Личный кабинет</a>
             </li>
         </ul>
     </div>

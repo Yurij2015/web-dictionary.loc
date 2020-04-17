@@ -1,7 +1,9 @@
 version: "3.7"
 services:
   webserver_di:
-    image: phpstorm/php-73-apache-xdebug-27
+#    image: phpstorm/php-73-apache-xdebug-27
+    build:
+      context: './php/'
     ports:
       - "80:80"
     networks:
@@ -9,6 +11,7 @@ services:
       - frontend
     volumes:
       - ${PROJECT_ROOT}/:/var/www/html/
+#      - ${PROJECT_ROOT}/php-config/:/usr/local/etc/php/
     environment:
       XDEBUG_CONFIG: remote_host=host.docker.internal
     depends_on:
@@ -33,7 +36,7 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin_di
     ports:
-      - 23:80
+      - 2323:80
     links:
       - mysql_di:db
     networks:
