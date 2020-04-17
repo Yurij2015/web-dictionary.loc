@@ -10,7 +10,7 @@ require_once('Dbsettings.php');
 
 $msg = '';
 try {
-    $db = new DB($host, $user, $password, $db_name, $port);
+    $db = new DBA($host, $user, $password, $db_name, $port);
 } catch (Exception $e) {
 }
 $form = new RegistrationForm($_POST);

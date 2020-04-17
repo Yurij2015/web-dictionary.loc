@@ -20,9 +20,11 @@ include_once('includes/header.php');
             <div class="row">
                 <div class="col-md-12">
                     <?php
-                    require("lib/RedBeanPHP5_4_2/rb.php");
-                    require("Dbsettings.php");
-                    R::setup("mysql:host=$host;port=$port;dbname=$db_name", $user, $password);
+                    include_once("lib/RedBeanPHP5_4_2/rb.php");
+                    include_once("Dbsettings.php");
+                    include_once("model/DB.php");
+                    include_once ("controller/Learnbook.php");
+                    new DB($host, $port, $db_name, $user, $password);
                     ?>
                     <table class="table table-hover">
                         <thead>
@@ -33,21 +35,21 @@ include_once('includes/header.php');
                             <th>Содержание</th>
                             <th>Автор</th>
                             <th>Категория</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        $managers = R::getAll('SELECT * FROM learnbook');
-                        foreach ($managers as $manager) {
-                            $id = $manager['id'];
+                        $learnbooks = new Learnbook();
+                        foreach ($learnbooks->get() as $learnbook) {
+                            $id = $learnbook['id'];
                             echo "<tr>
                         <td>" . $id . "</td>
-                        <td>" . $manager['title'] . "</td>
-                        <td>" . $manager['summary'] . "</td>
-                        <td>" . $manager['content'] . "</td>
-                        <td>" . $manager['content'] . "</td>
-                        <td>" . $manager['content'] . "</td>
-
+                        <td>" . $learnbook['title'] . "</td>
+                        <td>" . $learnbook['summary'] . "</td>
+                        <td>" . $learnbook['content'] . "</td>
+                        <td>" . $learnbook['tutor_id'] . "</td>
+                        <td>" . $learnbook['category_id'] . "</td>
                         <td><a href='managerupdate.php?id=$id' class='btn btn-info btn-sm'>Открыть</a>
                         | <a href='managerdelete.php?id=$id' class='btn btn-warning btn-sm' onclick='return confirmDelete();'>Удалить</a></td>
                       </tr>";
@@ -55,8 +57,6 @@ include_once('includes/header.php');
                         ?>
                         </tbody>
                     </table>
-
-
                     <a href="add-edu-material.php" class="btn btn-primary">Добавить учебный материал</a>
                 </div>
             </div>

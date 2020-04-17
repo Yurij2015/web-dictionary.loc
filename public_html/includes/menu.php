@@ -62,7 +62,7 @@ if (isset($_GET['msg'])) {
                     <tbody>
                     <?php
                     try {
-                    $db = new DB($host, $user, $password, $db_name);
+                    $db = new DBA($host, $user, $password, $db_name);
                     $menu = $db->query("SELECT * FROM menu, restorans WHERE menu.restorans_id_restoran = restorans.id_restoran");
                     foreach ($menu as $menuitem) {
                         ?>

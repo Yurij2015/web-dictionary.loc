@@ -13,9 +13,9 @@
         tinymce.init({
             selector: '#content',
             plugins: "print",
-            toolbar: "print",
+            // toolbar: "print",
             language: 'ru',
-            height : "480"
+            height : "480",
         });
     </script>
 </head>

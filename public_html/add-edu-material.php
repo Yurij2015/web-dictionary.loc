@@ -6,7 +6,7 @@ include_once('includes/header.php');
 ?>
     <div class="banner padd">
         <div class="container">
-            <img class="img-responsive" src="img/crown-white.png" alt=""/>
+            <img class="img-responsive" src="" alt=""/>
             <h2 class="white"><?= $title ?></h2>
             <ol class="breadcrumb">
                 <li class="mr-1"><a href="index.php">Главная</a></li>
@@ -35,8 +35,8 @@ include_once('includes/header.php');
 
                         <div class="form-group">
                             <label for="content">Содержание приказа</label>
-                            <input type="text" class="form-control" id="content"
-                                   name="content">
+                            <textarea type="text" class="form-control" id="content"
+                                      name="content">ff</textarea>
                         </div>
 
                         <div class="form-group">
