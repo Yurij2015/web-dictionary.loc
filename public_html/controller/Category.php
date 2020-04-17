@@ -12,4 +12,11 @@ class Category
     {
         return R::getAll('SELECT * FROM category');
     }
+
+    function getCategory($category_id)
+    {
+        $category = R::load('category', $category_id);
+        $category_name = $category->name;
+        return $category_name;
+    }
 }

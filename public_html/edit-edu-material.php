@@ -12,7 +12,7 @@ if ($_POST) {
         include_once("model/DB.php");
         include_once("controller/Learnbook.php");
         new DB($host, $port, $db_name, $user, $password);
-        $update= new Learnbook();
+        $update = new Learnbook();
         $update->update($title, $summary, $content, $tutor_id, $category_id, $id);
         header('location: edu-material.php?msg=Запись успешно обновлена!');
     }
@@ -44,6 +44,8 @@ include_once('includes/header.php');
                     include_once("Dbsettings.php");
                     include_once("model/DB.php");
                     include_once("controller/Learnbook.php");
+                    include_once("controller/Category.php");
+                    include_once("controller/Tutor.php");
                     new DB($host, $port, $db_name, $user, $password);
                     ?>
                     <?php
@@ -76,19 +78,45 @@ include_once('includes/header.php');
 
                             <div class="form-group">
                                 <label for="tutor_id">Автор (преподаватель)</label>
-                                <input type="text" class="form-control" id="tutor_id" placeholder="Преподаватель"
-                                       name="tutor_id"
-                                       value="<?= $learnbook['tutor_id'] ?>">
+                                <select type="text" class="form-control" name="tutor_id"
+                                        id="tutor_id">
+                                    <?php
+                                    $tutors = new Tutor();
+                                    ?>
+                                    <option value="<?= ($learnbook['tutor_id']) ?>" selected="selected">
+                                        <?= $tutors->getTutor($learnbook['tutor_id']) ?>
+                                    </option>
+                                    <?php
+                                    foreach ($tutors->get() as $tutor) { ?>
+                                        <option value="<?php echo $tutor['id']; ?>">
+                                            <?php echo $tutor['first_name'] . " " . $tutor['last_name']; ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="category_id">Тип приказа</label>
-                                <input type="text" class="form-control" id="category_id" placeholder="Категория"
-                                       name="category_id"
-                                       value="<?= $learnbook['category_id'] ?>">
+                                <label for="category_id">Категория</label>
+                                <select type="text" class="form-control" name="category_id"
+                                        id="category_id">
+                                    <?php
+                                    $categories = new Category();
+                                    ?>
+                                    <option value="<?= $learnbook['category_id'] ?>" selected="selected">
+                                        <?= $categories->getCategory($learnbook['category_id']) ?>
+                                    </option>
+                                    <?php
+                                    foreach ($categories->get() as $category) { ?>
+                                        <option value="<?php echo $category['id']; ?>">
+                                            <?php echo $category['name']; ?>
+                                        </option>
+                                    <?php } ?>
+
+                                </select>
                             </div>
+
                             <button type="submit" class="btn btn-primary">Обновить</button>
-                            <a href="index.php" class="btn btn-primary">Отмена</a>
+                            <a href="view-learnbook.php?id=<?=$id?>" class="btn btn-primary">Отмена</a>
                         </form>
                         <?php
                     }

@@ -24,6 +24,8 @@ include_once('includes/header.php');
                     include_once("Dbsettings.php");
                     include_once("model/DB.php");
                     include_once("controller/Learnbook.php");
+                    include_once("controller/Tutor.php");
+                    include_once("controller/Category.php");
                     new DB($host, $port, $db_name, $user, $password);
                     ?>
                     <?php
@@ -34,12 +36,15 @@ include_once('includes/header.php');
                         <p class="lead"><?= $learnbook['title'] ?></p>
                         <p><?= $learnbook['summary'] ?></p>
                         <p><?= htmlspecialchars_decode($learnbook['content']) ?></p>
-                        <p><?= $learnbook['tutor_id'] ?></p>
-                        <p><?= $learnbook['category_id'] ?></p>
+                        <?php $tutor = new Tutor(); ?>
+                        <p><?= $tutor->getTutor($learnbook['tutor_id']) ?></p>
+                        <?php $category = new Category(); ?>
+                        <p><?= $category->getCategory($learnbook['category_id']) ?></p>
                         <?php
                     }
                     ?>
-                    <a href="edit-edu-material.php?id=<?=$id?>" class="btn btn-primary">Редактировать</a>
+                    <a href="edit-edu-material.php?id=<?= $id ?>" class="btn btn-primary">Редактировать</a>
+                    <a href="edu-material.php" class="btn btn-primary">Назад</a>
 
                 </div>
             </div>

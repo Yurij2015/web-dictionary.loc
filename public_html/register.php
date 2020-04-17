@@ -3,7 +3,7 @@ session_start();
 $title = "Регистрация в системе";
 
 require_once("forms/RegistrationForm.php");
-require_once('DB.php');
+require_once('DBA.php');
 require_once('includes/Password.php');
 require_once('includes/Session.php');
 require_once('Dbsettings.php');

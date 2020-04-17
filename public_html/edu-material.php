@@ -23,7 +23,9 @@ include_once('includes/header.php');
                     include_once("lib/RedBeanPHP5_4_2/rb.php");
                     include_once("Dbsettings.php");
                     include_once("model/DB.php");
-                    include_once ("controller/Learnbook.php");
+                    include_once("controller/Learnbook.php");
+                    include_once("controller/Tutor.php");
+                    include_once("controller/Category.php");
                     new DB($host, $port, $db_name, $user, $password);
                     ?>
                     <table class="table table-hover">
@@ -32,26 +34,28 @@ include_once('includes/header.php');
                             <th>№</th>
                             <th>Наименование</th>
                             <th>Описание</th>
-                            <th>Содержание</th>
+                            <!--                            <th>Содержание</th>-->
                             <th>Автор</th>
                             <th>Категория</th>
+                            <th></th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
+                        $tutor = new Tutor();
                         $learnbooks = new Learnbook();
+                        $category = new Category();
                         foreach ($learnbooks->get() as $learnbook) {
                             $id = $learnbook['id'];
                             echo "<tr>
                         <td>" . $id . "</td>
                         <td>" . $learnbook['title'] . "</td>
                         <td>" . $learnbook['summary'] . "</td>
-                        <td>" . htmlspecialchars_decode($learnbook['content']) . "</td>
-                        <td>" . $learnbook['tutor_id'] . "</td>
-                        <td>" . $learnbook['category_id'] . "</td>
-                        <td><a href='view-learnbook.php?id=$id' class='btn btn-info btn-sm'>Открыть</a>
-                        | <a href='delete-learnbook.php?id=$id' class='btn btn-warning btn-sm' onclick='return confirmDelete();'>Удалить</a></td>
+                        <td>" . $tutor->getTutor($learnbook['tutor_id']) . "</td>
+                        <td>" . $category->getCategory($learnbook['category_id']) . "</td>
+                        <td><a href='view-learnbook.php?id=$id' class='btn btn-info btn-sm'>Открыть</a></td>
+                        <td><a href='delete-learnbook.php?id=$id' class='btn btn-warning btn-sm' onclick='return confirmDelete();'>Удалить</a></td>
                       </tr>";
                         }
                         ?>

@@ -62,6 +62,7 @@ include_once('includes/header.php');
                         include_once("Dbsettings.php");
                         include_once("model/DB.php");
                         include_once("controller/Category.php");
+                        include_once("controller/Tutor.php");
                         new DB($host, $port, $db_name, $user, $password);
                         ?>
                         <div class="form-group">
@@ -70,9 +71,9 @@ include_once('includes/header.php');
                                     id="tutor_id">
                                 <?php
                                 $tutors = new Tutor();
-                                foreach ($tutors->get() as $category) { ?>
-                                    <option value="<?php echo $category['id']; ?>">
-                                        <?php echo $category['first_name'] . " " . $category['last_name']; ?>
+                                foreach ($tutors->get() as $tutor) { ?>
+                                    <option value="<?php echo $tutor['id']; ?>">
+                                        <?php echo $tutor['first_name'] . " " . $tutor['last_name']; ?>
                                     </option>
                                 <?php } ?>
 

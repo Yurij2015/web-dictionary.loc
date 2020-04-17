@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Кадровые приказы</title>
+    <title>Справочник "Обработка текстовой информации"</title>
     <!-- Bootstrap -->
     <link href="../css/bootstrap-4.4.1.css" rel="stylesheet">
     <script src="../lib/tinymce/js/tinymce/tinymce.js" referrerpolicy="origin"></script>
@@ -21,7 +21,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">PersonnelOrders</a>
+    <a class="navbar-brand" href="#">LearnSystem</a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
