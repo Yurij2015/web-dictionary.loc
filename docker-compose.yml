@@ -1,0 +1,45 @@
+version: "3.7"
+services:
+  webserver_di:
+    image: phpstorm/php-73-apache-xdebug-27
+    ports:
+      - "80:80"
+    networks:
+      - backend
+      - frontend
+    volumes:
+      - ${PROJECT_ROOT}/:/var/www/html/
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal
+    depends_on:
+      - mysql_di
+    container_name: webserver_di
+  mysql_di:
+    image: mysql:5.7
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root3004917779
+      MYSQL_USER: yurijmo
+      MYSQL_PASSWORD: 3004917779
+      MYSQL_DATABASE: db_di
+    networks:
+      - backend
+    container_name: mysql_di
+  phpmyadmin_di:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_di
+    ports:
+      - 23:80
+    links:
+      - mysql_di:db
+    networks:
+      - backend
+networks:
+  frontend:
+  backend:
+volumes:
+  data:
