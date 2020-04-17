@@ -1,4 +1,23 @@
 <?php
+if ($_POST) {
+    $title = trim(htmlspecialchars($_POST['title']));
+    $summary = trim(htmlspecialchars($_POST['summary'])) ?: null;
+    $content = htmlspecialchars($_POST['content']) ?: null;
+    $tutor_id = $_POST['tutor_id'] ?: null;
+    $category_id = $_POST['category_id'] ?: null;
+    if (!empty($title)) {
+        include_once("lib/RedBeanPHP5_4_2/rb.php");
+        include_once("Dbsettings.php");
+        include_once("model/DB.php");
+        include_once("controller/Learnbook.php");
+        new DB($host, $port, $db_name, $user, $password);
+        $create = new Learnbook();
+        $create->create($title, $summary, $content, $tutor_id, $category_id);
+        header('location: edu-material.php?msg=Запись успешно добавлена!');
+    }
+}
+?>
+<?php
 session_start();
 $title = "Добавить учебный материал";
 $msg = '';
@@ -21,47 +40,63 @@ include_once('includes/header.php');
                 <div class="col-md-12">
                     <form method="post">
                         <div class="form-group">
-                            <label for="name">Название</label>
-                            <input type="text" class="form-control" id="name" placeholder="Название (номер)"
-                                   name="name"
+                            <label for="title">Название учебного материала</label>
+                            <input type="text" class="form-control" id="title" placeholder="Название учебного материала"
+                                   name="title"
                                    value="">
                         </div>
 
                         <div class="form-group">
-                            <label for="date">Дата</label>
-                            <input type="datetime-local" class="form-control" id="date" placeholder="Дата"
-                                   name="date">
+                            <label for="summary">Описание</label>
+                            <input type="text" class="form-control" id="summary" placeholder="Описание"
+                                   name="summary">
                         </div>
 
                         <div class="form-group">
-                            <label for="content">Содержание приказа</label>
+                            <label for="content">Текст учебного материала</label>
                             <textarea type="text" class="form-control" id="content"
-                                      name="content">ff</textarea>
+                                      name="content">Текст главы</textarea>
+                        </div>
+                        <?php
+                        include_once("lib/RedBeanPHP5_4_2/rb.php");
+                        include_once("Dbsettings.php");
+                        include_once("model/DB.php");
+                        include_once("controller/Category.php");
+                        new DB($host, $port, $db_name, $user, $password);
+                        ?>
+                        <div class="form-group">
+                            <label for="tutor_id">Автор (преподаватель)</label>
+                            <select type="text" class="form-control" name="tutor_id"
+                                    id="tutor_id">
+                                <?php
+                                $tutors = new Tutor();
+                                foreach ($tutors->get() as $category) { ?>
+                                    <option value="<?php echo $category['id']; ?>">
+                                        <?php echo $category['first_name'] . " " . $category['last_name']; ?>
+                                    </option>
+                                <?php } ?>
+
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="to_employee">Для работника</label>
-                            <input type="text" class="form-control" id="to_employee" placeholder="ФИО сотрудинка"
-                                   name="to_employee">
+                            <label for="category_id">Категория</label>
+                            <select type="text" class="form-control" name="category_id"
+                                    id="category_id">
+                                <?php
+                                $categories = new Category();
+                                foreach ($categories->get() as $category) { ?>
+                                    <option value="<?php echo $category['id']; ?>">
+                                        <?php echo $category['name']; ?>
+                                    </option>
+                                <?php } ?>
+
+                            </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="type_of_orders_id">Тип приказа</label>
-                            <input type="text" class="form-control" id="type_of_orders_id" placeholder="Тип приказа"
-                                   name="type_of_orders_id">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="order_author">Приказ составил</label>
-                            <input type="text" class="form-control" id="order_author" placeholder="ФИО сотрудника"
-                                   name="order_author">
-                        </div>
-
-
-                        <button type="submit" class="btn btn-primary">Войти</button>
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
                         <a href="index.php" class="btn btn-primary">Отмена</a>
                     </form>
-
                 </div>
             </div>
         </div>

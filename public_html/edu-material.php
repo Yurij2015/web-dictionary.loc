@@ -47,11 +47,11 @@ include_once('includes/header.php');
                         <td>" . $id . "</td>
                         <td>" . $learnbook['title'] . "</td>
                         <td>" . $learnbook['summary'] . "</td>
-                        <td>" . $learnbook['content'] . "</td>
+                        <td>" . htmlspecialchars_decode($learnbook['content']) . "</td>
                         <td>" . $learnbook['tutor_id'] . "</td>
                         <td>" . $learnbook['category_id'] . "</td>
-                        <td><a href='managerupdate.php?id=$id' class='btn btn-info btn-sm'>Открыть</a>
-                        | <a href='managerdelete.php?id=$id' class='btn btn-warning btn-sm' onclick='return confirmDelete();'>Удалить</a></td>
+                        <td><a href='view-learnbook.php?id=$id' class='btn btn-info btn-sm'>Открыть</a>
+                        | <a href='delete-learnbook.php?id=$id' class='btn btn-warning btn-sm' onclick='return confirmDelete();'>Удалить</a></td>
                       </tr>";
                         }
                         ?>
