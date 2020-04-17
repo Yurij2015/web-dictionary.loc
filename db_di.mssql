@@ -1,0 +1,505 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: db
+-- Generation Time: Apr 17, 2020 at 11:31 PM
+-- Server version: 5.7.28
+-- PHP Version: 7.4.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `db_di`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_log`
+--
+
+CREATE TABLE `admin_log` (
+  `id` int(11) NOT NULL,
+  `action_time` timestamp NULL DEFAULT NULL,
+  `content_type_id` int(11) DEFAULT NULL,
+  `object_id` int(11) DEFAULT NULL,
+  `object_repr` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `action_flag` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `change_message` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `app_label` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_group`
+--
+
+CREATE TABLE `auth_group` (
+  `id` int(11) NOT NULL,
+  `name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_permission`
+--
+
+CREATE TABLE `auth_permission` (
+  `id` int(11) NOT NULL,
+  `name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `codename` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content_type_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_user`
+--
+
+CREATE TABLE `auth_user` (
+  `id` int(11) NOT NULL,
+  `password` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_login` timestamp NULL DEFAULT NULL,
+  `is_superuser` tinyint(1) DEFAULT NULL,
+  `username` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `first_name` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(254) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_staff` tinyint(1) DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
+  `date_joined` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+CREATE TABLE `auth_user_groups` (
+  `id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+CREATE TABLE `auth_user_user_permissions` (
+  `id` int(11) NOT NULL,
+  `permission_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'Обработка текста'),
+(2, 'Редакторы текста');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `content_type`
+--
+
+CREATE TABLE `content_type` (
+  `id` int(11) NOT NULL,
+  `app_label` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `model` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `diary`
+--
+
+CREATE TABLE `diary` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `learnbook_id` int(11) NOT NULL,
+  `date` datetime DEFAULT NULL,
+  `detail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `learnbook`
+--
+
+CREATE TABLE `learnbook` (
+  `id` int(11) NOT NULL,
+  `title` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `summary` text COLLATE utf8mb4_unicode_ci,
+  `content` text COLLATE utf8mb4_unicode_ci,
+  `tutor_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `learnbook`
+--
+
+INSERT INTO `learnbook` (`id`, `title`, `summary`, `content`, `tutor_id`, `category_id`) VALUES
+(1, 'длдл', 'лдлдл', 'лллл', NULL, NULL),
+(2, 'fff', 'hhh', '&lt;p&gt;hhhhh&lt;/p&gt;', NULL, NULL),
+(3, 'asdf', 'asdf', '&lt;p&gt;asdfasdfasdf&lt;/p&gt;', NULL, NULL),
+(5, 'klk777', 'klk5555gggg', '&lt;p&gt;Текст главыklklk&lt;/p&gt;', NULL, NULL),
+(6, 'jkjkj', 'jkjkj', '&lt;p&gt;jkjkjkj&lt;/p&gt;', NULL, NULL),
+(7, 'klk77', 'klk', '&lt;p&gt;Текст главыklklk&lt;/p&gt;', NULL, NULL),
+(8, 'jkjkj555', 'jkjkj666', '&lt;p&gt;jkjkjkj&lt;/p&gt;', NULL, NULL),
+(9, 'asdf', 'asdf', '&lt;p&gt;asdf&lt;/p&gt;', NULL, NULL),
+(10, 'asdf55', 'asdf', '&lt;p&gt;asdf&lt;/p&gt;', NULL, NULL),
+(11, 'asdfas5555', 'asdf', '&lt;p&gt;asdf&lt;/p&gt;', NULL, NULL),
+(12, 'Технология обработки текстовой информации', 'Одной из самых популярных прикладных функций персонального компьютера сегодня является создание текстовой информации, то есть использование ПК в качестве пишущей машинки', '&lt;p style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;font-family: Arial; font-size: 12pt;&quot;&gt;Одной из самых популярных прикладных функций персонального компьютера сегодня является создание текстовой информации, то есть использование ПК в качестве пишущей машинки. Осуществить работу по созданию текстовых массивов позволяют текстовые блокноты, записные книжки, редакторы (процессоры), офисные издательские системы и другие программы, поставляемые в составе операционных систем и операционных оболочек. Они обладают минимальным набором выполняемых функций, однако, достаточными для выполнения элементарных операций с данными. Такие продукты позволяют пользователю не только набрать (напечатать) текст, но выполнить над ним ряд операций: редактирование, форматирование, разбивка текста на страницы, использование разнообразных шрифтов, печать и многое другое. При работе с текстовыми редакторами приходится постоянно выполнять большое множество однотипных операций, которые и объединяют большой набор таких программ. К ним относятся: действия по перемещению на экране окон и курсора; корректировка, вставка и удаление символов, строк и абзацев; откатка (отмена) внесенных изменений; выделение, удаление, перенос, дублирование фрагментов текста; форматирование; поиск и вывод данных на печатающее устройство. Каждый отдельно взятый текстовый редактор отличает свои характерные особенности и функциональные возможности. Но, изучив один из них, освоение других не представляется сложным.&lt;/span&gt;&lt;/p&gt;', 2, 2),
+(13, 'lklklk', 'lklklk', '&lt;p&gt;asdfasdadsf&lt;/p&gt;', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `session`
+--
+
+CREATE TABLE `session` (
+  `id` int(11) NOT NULL,
+  `session_key` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `session_data` text COLLATE utf8mb4_unicode_ci,
+  `expire_date` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student`
+--
+
+CREATE TABLE `student` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `auth_user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `timetable`
+--
+
+CREATE TABLE `timetable` (
+  `id` int(11) NOT NULL,
+  `subject` varchar(85) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `week` int(11) DEFAULT NULL,
+  `date_begin` datetime DEFAULT NULL,
+  `date_end` datetime DEFAULT NULL,
+  `tutor_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tutor`
+--
+
+CREATE TABLE `tutor` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `auth_user_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tutor`
+--
+
+INSERT INTO `tutor` (`id`, `first_name`, `last_name`, `description`, `auth_user_id`) VALUES
+(1, 'Иван', 'Иванов', NULL, NULL),
+(2, 'Олег', 'Макаров', NULL, NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin_log`
+--
+ALTER TABLE `admin_log`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_django_admin_log_auth_user1_idx` (`user_id`);
+
+--
+-- Indexes for table `auth_group`
+--
+ALTER TABLE `auth_group`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `auth_permission`
+--
+ALTER TABLE `auth_permission`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_auth_permission_django_content_type1_idx` (`content_type_id`);
+
+--
+-- Indexes for table `auth_user`
+--
+ALTER TABLE `auth_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `auth_user_groups`
+--
+ALTER TABLE `auth_user_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_auth_user_groups_auth_group1_idx` (`group_id`),
+  ADD KEY `fk_auth_user_groups_auth_user1_idx` (`user_id`);
+
+--
+-- Indexes for table `auth_user_user_permissions`
+--
+ALTER TABLE `auth_user_user_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_auth_user_user_permissions_auth_user1_idx` (`user_id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `content_type`
+--
+ALTER TABLE `content_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `diary`
+--
+ALTER TABLE `diary`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_diary_student1_idx` (`student_id`),
+  ADD KEY `fk_diary_learnbook1_idx` (`learnbook_id`);
+
+--
+-- Indexes for table `learnbook`
+--
+ALTER TABLE `learnbook`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_learnbook_learnbook_learnbook_tutor_idx` (`tutor_id`),
+  ADD KEY `fk_learnbook_learnbook_learnbook_category1_idx` (`category_id`);
+
+--
+-- Indexes for table `session`
+--
+ALTER TABLE `session`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_tutor_auth_user1_idx` (`auth_user_id`);
+
+--
+-- Indexes for table `timetable`
+--
+ALTER TABLE `timetable`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_Timetable_tutor1_idx` (`tutor_id`);
+
+--
+-- Indexes for table `tutor`
+--
+ALTER TABLE `tutor`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_tutor_auth_user1_idx` (`auth_user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin_log`
+--
+ALTER TABLE `admin_log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `auth_group`
+--
+ALTER TABLE `auth_group`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `auth_permission`
+--
+ALTER TABLE `auth_permission`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `auth_user`
+--
+ALTER TABLE `auth_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `auth_user_groups`
+--
+ALTER TABLE `auth_user_groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `auth_user_user_permissions`
+--
+ALTER TABLE `auth_user_user_permissions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `content_type`
+--
+ALTER TABLE `content_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `diary`
+--
+ALTER TABLE `diary`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `learnbook`
+--
+ALTER TABLE `learnbook`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `session`
+--
+ALTER TABLE `session`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `student`
+--
+ALTER TABLE `student`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `timetable`
+--
+ALTER TABLE `timetable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tutor`
+--
+ALTER TABLE `tutor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `admin_log`
+--
+ALTER TABLE `admin_log`
+  ADD CONSTRAINT `fk_django_admin_log_auth_user1` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `auth_permission`
+--
+ALTER TABLE `auth_permission`
+  ADD CONSTRAINT `fk_auth_permission_django_content_type1` FOREIGN KEY (`content_type_id`) REFERENCES `content_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `auth_user_groups`
+--
+ALTER TABLE `auth_user_groups`
+  ADD CONSTRAINT `fk_auth_user_groups_auth_group1` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_auth_user_groups_auth_user1` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `auth_user_user_permissions`
+--
+ALTER TABLE `auth_user_user_permissions`
+  ADD CONSTRAINT `fk_auth_user_user_permissions_auth_user1` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `diary`
+--
+ALTER TABLE `diary`
+  ADD CONSTRAINT `fk_diary_learnbook1` FOREIGN KEY (`learnbook_id`) REFERENCES `learnbook` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_diary_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `learnbook`
+--
+ALTER TABLE `learnbook`
+  ADD CONSTRAINT `fk_learnbook_learnbook_learnbook_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_learnbook_learnbook_learnbook_tutor` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `student`
+--
+ALTER TABLE `student`
+  ADD CONSTRAINT `fk_tutor_auth_user10` FOREIGN KEY (`auth_user_id`) REFERENCES `auth_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `timetable`
+--
+ALTER TABLE `timetable`
+  ADD CONSTRAINT `fk_Timetable_tutor1` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `tutor`
+--
+ALTER TABLE `tutor`
+  ADD CONSTRAINT `fk_tutor_auth_user1` FOREIGN KEY (`auth_user_id`) REFERENCES `auth_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

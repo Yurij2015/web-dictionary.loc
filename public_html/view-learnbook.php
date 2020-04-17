@@ -44,7 +44,7 @@ include_once('includes/header.php');
                     }
                     ?>
                     <a href="edit-edu-material.php?id=<?= $id ?>" class="btn btn-primary">Редактировать</a>
-                    <a href="edu-material.php" class="btn btn-primary">Назад</a>
+                    <a href="edu-material.php?id=<?=$id?>" class="btn btn-primary">Назад</a>
 
                 </div>
             </div>
