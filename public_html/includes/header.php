@@ -34,9 +34,8 @@
     </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-
         <a class="navbar-brand" href="#">LearnSystem</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -50,7 +49,7 @@
                     <a class="nav-link" href="../category.php">Категории</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../edu-material.php">Личный кабинет</a>
+                    <a class="nav-link" href="../personal-area/">Личный кабинет</a>
                 </li>
                 <?php
                 if (!isset($_SESSION['username'])) {
@@ -65,7 +64,7 @@
                 }
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Выйти <?php echo $_SESSION['username']; ?></a>
+                    <a class="nav-link" href="/logout.php">Выйти <?php echo $_SESSION['username']; ?></a>
                 </li>
             </ul>
         </div>
