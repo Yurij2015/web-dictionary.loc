@@ -4,11 +4,26 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Справочник "Обработка текстовой информации"</title>
+    <title>
+        <?php
+        if (isset($title)) {
+            echo $title;
+        }
+        else {
+            echo "Справочник \"Обработка текстовой информации\"";
+        }
+        ?>
+        </title>
     <!-- Bootstrap -->
     <link href="../css/bootstrap-4.4.1.css" rel="stylesheet">
     <script src="../lib/tinymce/js/tinymce/tinymce.js" referrerpolicy="origin"></script>
-
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <script>
         tinymce.init({
             selector: '#content',
@@ -37,7 +52,7 @@
                 <a class="nav-link" href="../edu-material.php">Учебные материалы</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../edu-material.php">Категории</a>
+                <a class="nav-link" href="../category.php">Категории</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../edu-material.php">Личный кабинет</a>

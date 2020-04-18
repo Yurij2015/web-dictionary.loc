@@ -1,6 +1,6 @@
 <?php
 session_start();
-$title = "Учебные материалы";
+$title = "Категории учебных материалов";
 $msg = '';
 include_once('includes/header.php');
 ?>
@@ -23,8 +23,6 @@ include_once('includes/header.php');
                     include_once("lib/RedBeanPHP5_4_2/rb.php");
                     include_once("Dbsettings.php");
                     include_once("model/DB.php");
-                    include_once("controller/Learnbook.php");
-                    include_once("controller/Tutor.php");
                     include_once("controller/Category.php");
                     new DB($host, $port, $db_name, $user, $password);
                     ?>
@@ -33,35 +31,26 @@ include_once('includes/header.php');
                         <tr>
                             <th>№</th>
                             <th>Наименование</th>
-                            <th>Описание</th>
-                            <!--<th>Содержание</th>-->
-                            <th>Автор</th>
-                            <th>Категория</th>
-                            <th></th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        $tutor = new Tutor();
-                        $learnbooks = new Learnbook();
-                        $category = new Category();
-                        foreach ($learnbooks->get() as $learnbook) {
-                            $id = $learnbook['id'];
+                        $categories = new Category();
+                        foreach ($categories->get() as $category) {
+                            $id = $category['id'];
                             echo "<tr>
                         <td>" . $id . "</td>
-                        <td>" . $learnbook['title'] . "</td>
-                        <td>" . $learnbook['summary'] . "</td>
-                        <td>" . $tutor->getTutor($learnbook['tutor_id']) . "</td>
-                        <td>" . $category->getCategory($learnbook['category_id']) . "</td>
-                        <td><a href='view-learnbook.php?id=$id' class='btn btn-info btn-sm'>Открыть</a></td>
-                        <td><a href='delete-learnbook.php?id=$id' class='btn btn-warning btn-sm' onclick='return confirmDelete();'>Удалить</a></td>
+                        <td>" . $category['name'] . "</td>
+                        <td><a href='edu-material-in-category.php?id-category=$id' class='btn btn-info btn-sm float-right'>Учебные материалы категории</a>
+                        <a href='edit-category.php?id=$id' class='btn btn-info btn-sm float-right mr-1'>Редактировать</a>
+                        <a href='delete-learnbook.php?id=$id' class='btn btn-warning btn-sm float-right mr-1' onclick='return confirmDelete();'>Удалить</a></td>
                       </tr>";
                         }
                         ?>
                         </tbody>
                     </table>
-                    <a href="add-edu-material.php" class="btn btn-primary">Добавить учебный материал</a>
+                    <a href="add-category.php" class="btn btn-primary">Добавить категорию</a>
                 </div>
             </div>
         </div>

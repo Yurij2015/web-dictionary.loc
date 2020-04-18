@@ -1,6 +1,6 @@
 <?php
 session_start();
-$title = "Учебные материалы";
+$title = "Просмотр учебного материала";
 $msg = '';
 include_once('includes/header.php');
 ?>

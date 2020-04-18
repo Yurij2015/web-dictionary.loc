@@ -18,6 +18,11 @@ class Learnbook
         return R::getAll("SELECT * FROM learnbook WHERE id=$id");
     }
 
+    function getEdMatInCategory($id_category)
+    {
+        return R::getAll("SELECT * FROM learnbook WHERE category_id=$id_category");
+    }
+
     function create($title, $summary, $content, $tutor_id, $category_id)
     {
         $learnbook = R::dispense('learnbook');

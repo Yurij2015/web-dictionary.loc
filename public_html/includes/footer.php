@@ -13,5 +13,6 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/popper.min.js"></script>
 <script src="../js/bootstrap-4.4.1.js"></script>
+<script src="../js/confirmdelete.js"></script>
 </body>
 </html>

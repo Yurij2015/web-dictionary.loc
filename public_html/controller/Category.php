@@ -13,10 +13,22 @@ class Category
         return R::getAll('SELECT * FROM category');
     }
 
+    function getOne($id)
+    {
+        return R::getAll("SELECT * FROM category WHERE id=$id");
+    }
+
     function getCategory($category_id)
     {
         $category = R::load('category', $category_id);
         $category_name = $category->name;
         return $category_name;
+    }
+
+    function update($name, $id)
+    {
+        $category = R::load('category', $id);
+        $category->name = $name;
+        return R::store($category);
     }
 }

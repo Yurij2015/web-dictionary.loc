@@ -1,6 +1,6 @@
 <?php
 session_start();
-$title = "Учебные материалы";
+$title = "Учебные материалы категории";
 $msg = '';
 include_once('includes/header.php');
 ?>
@@ -43,10 +43,11 @@ include_once('includes/header.php');
                         </thead>
                         <tbody>
                         <?php
+                        $id_category = $_GET['id-category'];
                         $tutor = new Tutor();
                         $learnbooks = new Learnbook();
                         $category = new Category();
-                        foreach ($learnbooks->get() as $learnbook) {
+                        foreach ($learnbooks->getEdMatInCategory($id_category) as $learnbook) {
                             $id = $learnbook['id'];
                             echo "<tr>
                         <td>" . $id . "</td>
@@ -61,7 +62,7 @@ include_once('includes/header.php');
                         ?>
                         </tbody>
                     </table>
-                    <a href="add-edu-material.php" class="btn btn-primary">Добавить учебный материал</a>
+                    <a href="category.php" class="btn btn-primary">Назад</a>
                 </div>
             </div>
         </div>
