@@ -96,7 +96,7 @@ include_once('includes/header.php');
                         </div>
 
                         <button type="submit" class="btn btn-primary">Сохранить</button>
-                        <a href="index.php" class="btn btn-primary">Отмена</a>
+                        <a href="edu-material.php" class="btn btn-primary">Отмена</a>
                     </form>
                 </div>
             </div>

@@ -31,4 +31,11 @@ class Category
         $category->name = $name;
         return R::store($category);
     }
+
+    function create($name)
+    {
+        $category = R::dispense('category');
+        $category->name = $name;
+        return R::store($category);
+    }
 }

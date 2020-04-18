@@ -18,14 +18,14 @@ $form = new RegistrationForm($_POST);
 if ($_POST) {
     if ($form->validate()) {
         $email = $db->escape($form->getEmail());
-        $login = $db->escape($form->getLogin());
+        $username = $db->escape($form->getUsername());
         $password = new Password($db->escape($form->getPassword()));
 
-        $res = $db->query("SELECT * FROM `users` WHERE email = '{$email}'");
+        $res = $db->query("SELECT * FROM `auth_user` WHERE email = '{$email}'");
         if ($res) {
             $msg = 'Пользователь с таким эл. адресом уже существует!';
         } else {
-            $db->query("INSERT INTO `users` (email, login, password) VALUES ('{$email}','{$login}', '{$password}')");
+            $db->query("INSERT INTO `auth_user` (email, username, password) VALUES ('{$email}','{$username}', '{$password}')");
             $msg = "Регистрация прошла успешно, можете войти на сайт";
         }
     } else {
@@ -40,7 +40,7 @@ include_once('includes/header.php');
     <div class="banner padd">
         <div class="container">
             <!-- Image -->
-            <img class="img-responsive" src="img/crown-white.png" alt=""/>
+            <img class="img-responsive" src="" alt=""/>
             <!-- Heading -->
             <h2 class="white">Регистрация</h2>
             <ol class="breadcrumb">
@@ -66,25 +66,25 @@ include_once('includes/header.php');
                             <b style="color: red;"><?= $msg; ?></b>
                             <form method="post">
                                 <div class="form-group">
-                                    <label for="InputEmail">Адрес электронной почты</label>
-                                    <input type="email" class="form-control" id="InputEmail" placeholder="Ваш email"
+                                    <label for="email">Адрес электронной почты</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Ваш email"
                                            name="email"
                                            value="<?= $form->getEmail(); ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label for="InputUsername">Имя пользователя</label>
-                                    <input type="text" class="form-control" id="InputUsername"
-                                           placeholder="Ваше Имя" name="login" value="<?= $form->getLogin() ?>">
+                                    <label for="username">Имя пользователя</label>
+                                    <input type="text" class="form-control" id="username"
+                                           placeholder="Ваше Имя" name="username" value="<?= $form->getUsername() ?>">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="InputPassword">Пароль</label>
-                                    <input type="password" class="form-control" id="InputPassword" placeholder="Пароль"
+                                    <label for="password">Пароль</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Пароль"
                                            name="password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="InputPasswordConfirm">Проверка пароля</label>
-                                    <input type="password" class="form-control" id="InputPasswordConfirm"
+                                    <label for="passwordConfirm">Проверка пароля</label>
+                                    <input type="password" class="form-control" id="passwordConfirm"
                                            placeholder="Проверка пароля"
                                            name="passwordConfirm">
                                 </div>

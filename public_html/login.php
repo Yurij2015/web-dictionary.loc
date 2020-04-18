@@ -18,18 +18,18 @@ $form = new LoginForm($_POST);
 
 if ($_POST) {
     if ($form->validate()) {
-        $login = $db->escape($form->getLogin());
+        $username = $db->escape($form->getUsername());
         $password = new Password($db->escape($form->getPassword()));
 
         try {
-            $res = $db->query("SELECT * FROM users WHERE login = '{$login}' AND hash_pass = '{$password}' LIMIT 1");
+            $res = $db->query("SELECT * FROM auth_user WHERE username = '{$username}' AND password = '{$password}' LIMIT 1");
         } catch (Exception $e) {
         }
         if (!$res) {
             $msg = 'Пользователя с таким учетными данными нет';
         } else {
-            $login = $res[0]['login'];
-            Session::set('login', $login);
+            $username = $res[0]['username'];
+            Session::set('username', $username);
             header('location: index.php?msg=Вы авторизированы на сайте');
         }
     } else {
@@ -44,7 +44,7 @@ include_once('includes/header.php');
     <div class="banner padd">
         <div class="container">
             <!-- Image -->
-            <img class="img-responsive" src="img/crown-white.png" alt=""/>
+            <img class="img-responsive" src="" alt=""/>
             <!-- Heading -->
             <h2 class="white"><?= $title ?></h2>
             <ol class="breadcrumb">
@@ -70,14 +70,14 @@ include_once('includes/header.php');
                             <b style="color: red;"><?= $msg; ?></b>
                             <form method="post">
                                 <div class="form-group">
-                                    <label for="InputEmail">Логин</label>
-                                    <input type="text" class="form-control" id="InputEmail" placeholder="Ваш логин"
-                                           name="login"
-                                           value="<?= $form->getLogin(); ?>">
+                                    <label for="username">Логин</label>
+                                    <input type="text" class="form-control" id="username" placeholder="Ваш логин"
+                                           name="username"
+                                           value="<?= $form->getUsername(); ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label for="InputPassword">Пароль</label>
-                                    <input type="password" class="form-control" id="InputPassword" placeholder="Пароль"
+                                    <label for="password">Пароль</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Пароль"
                                            name="password">
                                 </div>
 

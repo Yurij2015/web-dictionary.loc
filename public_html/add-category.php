@@ -36,13 +36,12 @@ include_once('includes/header.php');
                 <div class="col-md-12">
                     <form method="post">
                         <div class="form-group">
-                            <label for="title">Название учебного материала</label>
-                            <input type="text" class="form-control" id="title" placeholder="Название учебного материала"
-                                   name="title"
-                                   value="">
+                            <label for="name">Название категории</label>
+                            <input type="text" class="form-control" id="name" placeholder="Название учебного материала"
+                                   name="name">
                         </div>
                         <button type="submit" class="btn btn-primary">Сохранить</button>
-                        <a href="index.php" class="btn btn-primary">Отмена</a>
+                        <a href="category.php" class="btn btn-primary">Отмена</a>
                     </form>
                 </div>
             </div>

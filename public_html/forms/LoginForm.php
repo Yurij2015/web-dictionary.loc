@@ -1,64 +1,58 @@
 <?php
 
-class LoginForm {
-	private $login;
-	private $password;
+class LoginForm
+{
+    private $username;
+    private $password;
 
-	/**
-	 * @param array $data
-	 */
-	public function __construct( Array $data ) {
-		$this->login = isset( $data['login'] ) ? $data['login'] : null;
-		$this->password = isset( $data['password'] ) ? $data['password'] : null;
-	}
+    /**
+     * @param array $data
+     */
+    public function __construct(array $data)
+    {
+        $this->username = isset($data['username']) ? $data['username'] : null;
+        $this->password = isset($data['password']) ? $data['password'] : null;
+    }
 
-	/**
-	 * @return bool
-	 */
-	public function validate() {
-		return ! empty( $this->login ) && ! empty( $this->password );
-	}
-
-	/**
-	 * @return mixed
-	 */
-	public function getEmail() {
-		return $this->login;
-	}
-
-	/**
-	 * @param mixed $login
-	 */
-	public function setEmail( $login ) {
-		$this->login = $login;
-	}
+    /**
+     * @return bool
+     */
+    public function validate()
+    {
+        return !empty($this->username) && !empty($this->password);
+    }
 
     /**
      * @return mixed
      */
-    public function getLogin() {
-        return $this->login;
+    public function getUsername()
+    {
+        return $this->username;
     }
 
     /**
-     * @param mixed $login
+     * @param mixed $username
      */
-    public function setLogin( $login ) {
-        $this->login = $login;
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 
     /**
-	 * @return mixed
-	 */
-	public function getPassword() {
-		return $this->password;
-	}
-
-	/**
-	 * @param mixed $password
-	 */
-	public function setPassword( $password ) {
-		$this->password = $password;
-	}
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
 
 }

@@ -8,12 +8,11 @@
         <?php
         if (isset($title)) {
             echo $title;
-        }
-        else {
+        } else {
             echo "Справочник \"Обработка текстовой информации\"";
         }
         ?>
-        </title>
+    </title>
     <!-- Bootstrap -->
     <link href="../css/bootstrap-4.4.1.css" rel="stylesheet">
     <script src="../lib/tinymce/js/tinymce/tinymce.js" referrerpolicy="origin"></script>
@@ -30,34 +29,46 @@
             plugins: "print",
             // toolbar: "print",
             language: 'ru',
-            height : "480",
+            height: "480",
         });
     </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">LearnSystem</a>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="register.php">Регистрация</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="login.php">Авторизация</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../edu-material.php">Учебные материалы</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../category.php">Категории</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../edu-material.php">Личный кабинет</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+
+        <a class="navbar-brand" href="#">LearnSystem</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../edu-material.php">Учебные материалы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../category.php">Категории</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../edu-material.php">Личный кабинет</a>
+                </li>
+                <?php
+                if (!isset($_SESSION['username'])) {
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.php">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Авторизация</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Выйти <?php echo $_SESSION['username']; ?></a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 <hr>

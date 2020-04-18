@@ -1,4 +1,7 @@
-<?php include_once('includes/header.php') ?>
+<?php
+session_start();
+include_once('includes/header.php');
+?>
 
     <div class="container mt-2">
         <div class="row">
