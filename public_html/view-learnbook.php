@@ -16,7 +16,7 @@ include_once('includes/header.php');
         </div>
     </div>
     <div class="inner-page padd">
-        <div class="container">
+        <div class="container mb-5">
             <div class="row">
                 <div class="col-md-12">
                     <?php
@@ -45,7 +45,6 @@ include_once('includes/header.php');
                     ?>
                     <a href="edit-edu-material.php?id=<?= $id ?>" class="btn btn-primary">Редактировать</a>
                     <a href="edu-material.php?id=<?=$id?>" class="btn btn-primary">Назад</a>
-
                 </div>
             </div>
         </div>

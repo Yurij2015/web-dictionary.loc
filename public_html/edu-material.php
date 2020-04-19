@@ -16,7 +16,7 @@ include_once('includes/header.php');
         </div>
     </div>
     <div class="inner-page padd">
-        <div class="container">
+        <div class="container mb-5">
             <div class="row">
                 <div class="col-md-12">
                     <?php
