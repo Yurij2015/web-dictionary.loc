@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Apr 17, 2020 at 11:31 PM
+-- Generation Time: Apr 19, 2020 at 06:24 AM
 -- Server version: 5.7.28
 -- PHP Version: 7.4.1
 
@@ -79,10 +79,19 @@ CREATE TABLE `auth_user` (
   `first_name` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_name` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(254) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_staff` tinyint(1) DEFAULT NULL,
+  `is_staff` tinyint(1) DEFAULT '3',
   `is_active` tinyint(1) DEFAULT NULL,
   `date_joined` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
+(1, 'a11a4ea3919f45415d5d74cec0e30032', NULL, NULL, 'Yurij2015', 'Yurij', 'Mokrij', 'superuser@mail.ru', 1, NULL, NULL),
+(2, '06d9dc109ddb9eed1ee8f07c075751e4', NULL, NULL, 'Yurij2016', 'ss', 'ww', 'asdf@asdf', 3, NULL, NULL),
+(3, '06d9dc109ddb9eed1ee8f07c075751e4', NULL, NULL, 'Yurij2010', 'Иван', 'Иванов', 'ttg@ff', 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -125,7 +134,8 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`id`, `name`) VALUES
 (1, 'Обработка текста'),
-(2, 'Редакторы текста');
+(2, 'Редакторы текста'),
+(3, 'Редактирование текста');
 
 -- --------------------------------------------------------
 
@@ -174,7 +184,7 @@ CREATE TABLE `learnbook` (
 
 INSERT INTO `learnbook` (`id`, `title`, `summary`, `content`, `tutor_id`, `category_id`) VALUES
 (1, 'длдл', 'лдлдл', 'лллл', NULL, NULL),
-(2, 'fff', 'hhh', '&lt;p&gt;hhhhh&lt;/p&gt;', NULL, NULL),
+(2, 'Редакторы текста7', NULL, NULL, NULL, NULL),
 (3, 'asdf', 'asdf', '&lt;p&gt;asdfasdfasdf&lt;/p&gt;', NULL, NULL),
 (5, 'klk777', 'klk5555gggg', '&lt;p&gt;Текст главыklklk&lt;/p&gt;', NULL, NULL),
 (6, 'jkjkj', 'jkjkj', '&lt;p&gt;jkjkjkj&lt;/p&gt;', NULL, NULL),
@@ -184,7 +194,7 @@ INSERT INTO `learnbook` (`id`, `title`, `summary`, `content`, `tutor_id`, `categ
 (10, 'asdf55', 'asdf', '&lt;p&gt;asdf&lt;/p&gt;', NULL, NULL),
 (11, 'asdfas5555', 'asdf', '&lt;p&gt;asdf&lt;/p&gt;', NULL, NULL),
 (12, 'Технология обработки текстовой информации', 'Одной из самых популярных прикладных функций персонального компьютера сегодня является создание текстовой информации, то есть использование ПК в качестве пишущей машинки', '&lt;p style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;font-family: Arial; font-size: 12pt;&quot;&gt;Одной из самых популярных прикладных функций персонального компьютера сегодня является создание текстовой информации, то есть использование ПК в качестве пишущей машинки. Осуществить работу по созданию текстовых массивов позволяют текстовые блокноты, записные книжки, редакторы (процессоры), офисные издательские системы и другие программы, поставляемые в составе операционных систем и операционных оболочек. Они обладают минимальным набором выполняемых функций, однако, достаточными для выполнения элементарных операций с данными. Такие продукты позволяют пользователю не только набрать (напечатать) текст, но выполнить над ним ряд операций: редактирование, форматирование, разбивка текста на страницы, использование разнообразных шрифтов, печать и многое другое. При работе с текстовыми редакторами приходится постоянно выполнять большое множество однотипных операций, которые и объединяют большой набор таких программ. К ним относятся: действия по перемещению на экране окон и курсора; корректировка, вставка и удаление символов, строк и абзацев; откатка (отмена) внесенных изменений; выделение, удаление, перенос, дублирование фрагментов текста; форматирование; поиск и вывод данных на печатающее устройство. Каждый отдельно взятый текстовый редактор отличает свои характерные особенности и функциональные возможности. Но, изучив один из них, освоение других не представляется сложным.&lt;/span&gt;&lt;/p&gt;', 2, 2),
-(13, 'lklklk', 'lklklk', '&lt;p&gt;asdfasdadsf&lt;/p&gt;', 1, 1);
+(13, 'lklklk', 'lklklk', '&lt;p&gt;asdfasdadsf&lt;/p&gt;', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -278,7 +288,9 @@ ALTER TABLE `auth_permission`
 -- Indexes for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `auth_user_groups`
@@ -376,7 +388,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -394,7 +406,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `content_type`
