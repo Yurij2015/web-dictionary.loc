@@ -41,19 +41,36 @@ include_once('../includes/header.php');
                             </thead>
                             <tbody>
                             <?php
-                            $categories = new User();
+                            $users = new User();
                             $username = $_SESSION['username'];
-                            foreach ($categories->getOne($username) as $category) {
-                                $id = $category['id'];
-                                echo "<tr>
-                        <td>" . $id . "</td>
-                        <td>" . $category['username'] . "</td>
-                        <td>" . $category['first_name'] . "</td>
-                        <td>" . $category['last_name'] . "</td>
-                        <td>" . $category['email'] . "</td>
-                        <td>" . $category['is_staff'] . "</td>
-                        <td><a href='edit-user.php' class='btn btn-info btn-sm float-right mr-1'>Редактировать</a></td>
-                      </tr>";
+                            foreach ($users->getOne($username) as $user) {
+                                $id = $user['id']; ?>
+                                <tr>
+                                    <td><?= $id ?></td>
+                                    <td><?= $user['username'] ?></td>
+                                    <td><?= $user['first_name'] ?></td>
+                                    <td><?= $user['last_name'] ?></td>
+                                    <td><?= $user['email'] ?></td>
+                                    <td>
+                                        <?php
+                                        switch ($user['is_staff']) {
+                                            case 1:
+                                                echo "Admin";
+                                                break;
+                                            case 2:
+                                                echo "Tutor";
+                                                break;
+                                            case 3:
+                                                echo "Student";
+                                                break;
+                                        }
+                                        ?>
+                                    </td>
+                                    <td><a href='edit-user.php?id=<?= $id ?>'
+                                           class='btn btn-info btn-sm float-right mr-1'>Редактировать</a>
+                                    </td>
+                                </tr>
+                                <?php
                             }
                             ?>
                             </tbody>

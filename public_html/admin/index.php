@@ -1,6 +1,6 @@
 <?php
 session_start();
-$title = "Личный кабинет";
+$title = "Панель администратора";
 $msg = '';
 include_once('../includes/header.php');
 ?>
@@ -48,7 +48,7 @@ include_once('../includes/header.php');
                                 ?>
                                 <tr>
                                     <td><?= $id ?></td>
-                                    <td><?= $user['username'] ?></td>git
+                                    <td><?= $user['username'] ?></td>
                                     <td><?= $user['first_name'] ?></td>
                                     <td><?= $user['last_name'] ?></td>
                                     <td><?= $user['email'] ?></td>
